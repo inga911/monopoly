@@ -1,0 +1,204 @@
+body {
+    font-family: monospace;
+
+
+    header {
+        display: flex;
+        justify-content: center;
+        gap: 100px;
+
+
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            gap: 40px;
+            position: absolute;
+            top: 40%;
+            left: 25%;
+
+            .info {
+                position: absolute;
+                top: 0;
+                color: crimson;
+                font-size: 22px;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+            }
+
+            .dice {
+                h3 {
+                    text-align: center;
+                    text-transform: uppercase;
+                }
+
+                .dice-result {
+                    position: absolute;
+                    top: 100px;
+                    left: 20px;
+
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        margin: 10px;
+                    }
+                }
+
+            }
+        }
+    }
+
+    .game {
+        display: flex;
+        gap: 50px;
+        width: 90%;
+        margin: 40px auto;
+
+        .table {
+            display: grid;
+            width: 1000px;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            margin-left: 5%;
+
+            .cell {
+                border: 1px solid grey;
+                width: 120px;
+                height: 150px;
+                position: relative;
+                background-position: bottom;
+                background-size: contain;
+                background-repeat: no-repeat;
+
+                .price-box {
+                    width: 100%;
+                    height: 25px;
+                    text-align: center;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.448);
+                    color: rgb(0, 0, 0);
+                }
+
+                .go1 {
+                    font-size: 32px;
+                    text-align: center;
+                    margin-top: -15px;
+                }
+
+                .go {
+                    font-size: 16px;
+                    text-align: center;
+                    margin-top: 60px;
+                }
+
+                .tax1 {
+                    font-size: 25px;
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+
+                .tax {
+                    text-align: center;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .bought-table {
+            text-align: center;
+            border: 1px solid grey;
+            width: 300px;
+            height: fit-content;
+
+            .player-money {
+                border-bottom: 1px solid grey;
+                padding: 15px;
+                background-color: rgb(121, 226, 118);
+                text-align: center;
+                font-size: 18px;
+            }
+
+            h2 {
+                text-transform: uppercase;
+                font-weight: 400;
+                letter-spacing: 2px;
+            }
+
+            .bought-streets {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 25px;
+                padding: 25px;
+                justify-content: center;
+
+                .each-street {
+                    width: 170px;
+                    padding: 20px;
+                }
+            }
+        }
+
+        .player {
+            height: 40px;
+            width: 40px;
+            background-color: rgb(169, 254, 0);
+            border: 1px solid #00ffb3b0;
+            border-radius: 50%;
+            margin-left: 50%;
+            transform: translate(-50%, 50%);
+            position: absolute;
+            top: 30%;
+            left: 0;
+        }
+    }
+
+
+}
+
+button {
+    padding: 7px 15px;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.52);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-family: monospace;
+    color: rgba(0, 0, 0, 0.69);
+    transition: all 0.1s;
+
+    &:hover {
+        cursor: pointer;
+        color: rgb(2, 201, 9);
+        border-color: rgb(3, 255, 11);
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.238);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.disable {
+    pointer-events: none;
+}
+
+.shake {
+    animation: shake 0.5s infinite
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(5deg);
+    }
+}

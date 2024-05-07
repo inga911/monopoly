@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monopoly Game</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="actions">
+        <div class="info"></div>
+        <div class="dice">
+          <h3>Result: 0</h3>
+          <button class="rollBtn">Roll Dice</button>
+          <div class="dice-result"></div>
+        </div>
+        <button class="buy">Buy</button>
+        <button class="pay"><span class="info-pay"></span> Pay</button>
+        <button class="go-to-jail">
+          <span class="info-jail"></span> Go to jail
+        </button>
+      </div>
+    </header>
+    <div class="game">
+      <div class="table"></div>
+      <div class="bought-table">
+        <div class="player-money">Money: $1000</div>
+        <h2 class="bought-street-count">Bought streets: 0</h2>
+        <div class="bought-streets"></div>
+      </div>
+    </div>
+  </body>
+</html>
