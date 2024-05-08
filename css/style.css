@@ -12,12 +12,56 @@ body header .actions {
   align-items: end;
   gap: 40px;
   position: absolute;
-  top: 40%;
-  left: 25%;
+  top: 50%;
+  left: 29%;
+}
+body header .actions button {
+  padding: 7px 15px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.52);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-family: monospace;
+  color: rgba(0, 0, 0, 0.69);
+  transition: all 0.1s;
+}
+body header .actions button:hover {
+  cursor: pointer;
+  color: rgb(2, 201, 9);
+  border-color: rgb(3, 255, 11);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.238);
+  transform: translateY(-2px);
+}
+body header .actions button:active {
+  transform: translateY(0);
+}
+body header .actions .payment-info {
+  position: absolute;
+  bottom: -15px;
+  left: 45%;
+  font-size: 15px;
+  color: red;
+  opacity: 0;
+  width: 100px;
+  font-weight: 600;
+}
+body header .actions .opacity {
+  animation: opacityInfo 1s;
+}
+@keyframes opacityInfo {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(25px);
+  }
 }
 body header .actions .info {
   position: absolute;
-  top: 0;
+  top: -50px;
   color: crimson;
   font-size: 22px;
   text-transform: uppercase;
@@ -126,29 +170,6 @@ body .game .player {
   position: absolute;
   top: 30%;
   left: 0;
-}
-
-button {
-  padding: 7px 15px;
-  background-color: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.52);
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: 2px;
-  font-family: monospace;
-  color: rgba(0, 0, 0, 0.69);
-  transition: all 0.1s;
-}
-button:hover {
-  cursor: pointer;
-  color: rgb(2, 201, 9);
-  border-color: rgb(3, 255, 11);
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.238);
-  transform: translateY(-2px);
-}
-button:active {
-  transform: translateY(0);
 }
 
 .disable {

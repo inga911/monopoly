@@ -10,13 +10,17 @@ const boughtStreetCountHtml = document.querySelector('.bought-street-count')
 const goToJailBtn = document.querySelector('.go-to-jail')
 const info = document.querySelector('.info')
 const diceResult = document.querySelector('.dice-result')
+const paymentInfo = document.querySelector('.payment-info')
+
 
 let playerPosition = 1
 let money = 1000
 let bought = []
 let boughtStreetCount = 0
 
+
 goToJailBtn.classList.add('disable')
+payBtn.classList.add('disable')
 
 const dicesImg = [
     'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Dice-1.svg/900px-Dice-1.svg.png',
@@ -69,7 +73,6 @@ const items1 = {
 function shake() {
     diceResult.innerHTML = '';
     const randomNumb = Math.ceil(Math.random() * 6);
-    result.innerHTML = `Result: ${randomNumb} `
     playerPosition += randomNumb;
     const img = document.createElement('img')
     img.className = 'dice-img shake'
@@ -97,7 +100,7 @@ function appendMap() {
                 cell === 20 ?
                     `background-image: url('https://d1w8c6s6gmwlek.cloudfront.net/partyhardtees.com/overlays/372/503/37250318.png');"` :
                     (cellInfo && cellInfo.bonus === 'train' ?
-                        `background-image: url('https://lh3.googleusercontent.com/proxy/-lctFkVIDYyyu8wktsjSOtC-ZU8oAKbQQb_qaQaaTfmZp3Ul9sOSd072NU-G8tAWAzykPlmrfES8JdJBhtosLQ6Rq2xzrSBKPXHx1zwuu_x6NyLjmjwh2JO7P8VmtuKdiHRiFk8zOFjhftk_33F05-PmvuOPaeqThwIQzCvvEvAfACLlRu8a');"` :
+                        `background-image: url('https://ghosttrainproject.files.wordpress.com/2019/10/transparentbkgd-copy-e1570573354545.png?w=1024');"` :
                         boughtBgColor));
 
         table.innerHTML += `
@@ -113,16 +116,17 @@ function appendMap() {
     });
     if (playerPosition === 20) {
         info.innerHTML = 'You have to go to jail'
-        rollBtn.classList.add('disable')
-        buyBtn.classList.add('disable')
-        payBtn.classList.add('disable')
         goToJailBtn.classList.remove('disable')
+        rollBtn.classList.add('disable')
+        payBtn.classList.add('disable')
+        buyBtn.classList.add('disable')
+
     }
     if (playerPosition === 4 || playerPosition === 24) {
         info.innerHTML = 'You have to pay'
+        payBtn.classList.remove('disable')
         rollBtn.classList.add('disable')
         buyBtn.classList.add('disable')
-        goToJailBtn.classList.add('disable')
     }
 }
 appendMap()
@@ -138,11 +142,6 @@ function buyStreet() {
     eachStreet.style.backgroundColor = `${streetcolor}`
     eachStreet.textContent = `Street: ${street} | Cost: $${cost} `
 
-    if (bought.includes(street)) {
-        alert("This street has already been purchased.");
-        return;
-    }
-
     if (money >= cost) {
         money -= cost
         boughtStreets.appendChild(eachStreet)
@@ -152,14 +151,13 @@ function buyStreet() {
     } else {
         alert('not enough money')
     }
-
-    if (streetcolor === '#d72e0500') {
-        console.log('street color');
-    }
 }
 
 
 rollBtn.onclick = () => {
+    info.textContent = ''
+    buyBtn.classList.remove('disable')
+    paymentInfo.classList.remove('opacity')
     shake()
     if (playerPosition > 24) {
         playerPosition -= 24
@@ -173,33 +171,43 @@ rollBtn.onclick = () => {
 
 buyBtn.onclick = () => {
     const street = playerPosition;
+    const cost = items1[playerPosition].price
 
+    if (bought.includes(street)) {
+        paymentInfo.classList.remove('opacity')
+        info.innerHTML = 'This street has already been purchased.'
+        return;
+    }
     if (street === 8 || street === 13 || street === 1) {
-        alert('these properties cannot be bought');
-    } else {
-        buyStreet();
+        info.textContent = 'This property cannot be bought'
+        return
     }
     boughtStreetCount = bought.length
     boughtStreetCountHtml.innerHTML = `Bought streets: ${boughtStreetCount}`
+    buyStreet()
+    paymentInfo.classList.add('opacity')
+    paymentInfo.innerHTML = `-${cost}$`
 }
 
 payBtn.onclick = () => {
+    const cost = items1[playerPosition].price
     money += Number(items1[playerPosition].price)
     updatePlayerMoney()
-    rollBtn.classList.toggle('disable')
-    buyBtn.classList.toggle('disable')
-    goToJailBtn.classList.toggle('disable')
+    rollBtn.classList.remove('disable')
+    payBtn.classList.add('disable')
     info.innerHTML = ''
+    paymentInfo.classList.add('opacity')
+    paymentInfo.innerHTML = `${cost}$`
 }
 
 goToJailBtn.onclick = () => {
     playerPosition = 8
     appendMap()
-    rollBtn.classList.toggle('disable')
-    buyBtn.classList.toggle('disable')
-    payBtn.classList.toggle('disable')
-    goToJailBtn.classList.toggle('disable')
     info.innerHTML = ''
+    goToJailBtn.classList.add('disable')
+    rollBtn.classList.remove('disable')
+
+
 }
 
 function updatePlayerMoney() {
