@@ -49,23 +49,23 @@ const items1 = {
     3: { color: '#906b5d', price: 50 },
     4: { color: '#d72e0500', price: -200, bonus: 'tax' },
     5: { color: '#906b5d', price: 250 },
-    6: { color: '#d72e0500', price: 200, bonus: 'train' },
+    6: { color: '#9e9e9e52', price: 200, bonus: 'train' },
     7: { color: '#bdd9fd', price: 100 },
     8: { color: '#d72e0500', price: '' },
     9: { color: '#bdd9fd', price: 120 },
-    10: { color: '#d72e0500', price: 200, bonus: 'train' },
+    10: { color: '#9e9e9e52', price: 200, bonus: 'train' },
     11: { color: '#c981d5', price: 140 },
     12: { color: '#c981d5', price: 180 },
     13: { color: '#d72e0500', price: '' },
     14: { color: '#fea25b', price: 180 },
     15: { color: '#D72E05', price: 200 },
-    16: { color: '#d72e0500', price: 200, bonus: 'train' },
+    16: { color: '#9e9e9e52', price: 200, bonus: 'train' },
     17: { color: '#D72E05', price: 220 },
     18: { color: '#D72E05', price: 220 },
     19: { color: '#ECFA67', price: 200 },
     20: { color: '#d72e0500', price: '' },
     21: { color: '#ECFA67', price: 250 },
-    22: { color: '#d72e0500', price: 200, bonus: 'train' },
+    22: { color: '#9e9e9e52', price: 200, bonus: 'train' },
     23: { color: '#38A170', price: 300 },
     24: { color: '#d72e0500', price: -200, bonus: 'tax' },
 };
@@ -106,7 +106,7 @@ function appendMap() {
         table.innerHTML += `
             <div style="${cellStyle}" class="${cellClass}">
                 ${cellInfo ? `<div ${backgroundColor} class="price-box">${cellInfo.price}</div>` : ''}
-                ${cell ? cell : ''}
+               
                 ${cell === 1 ? '<div class="go1">GO &#8594;</div><div class="go">You get <b>$200</b></div>' : ''}
                 ${cell === 4 ? '<div class="tax1">INCOME TAX</div><div  class="tax">You have pay <b>$200</b></div>' : ''}
                 ${cell === 24 ? '<div class="tax1">LUXURY TAX</div><div  class="tax">You have pay <b>$200</b></div>' : ''}
@@ -206,8 +206,6 @@ goToJailBtn.onclick = () => {
     info.innerHTML = ''
     goToJailBtn.classList.add('disable')
     rollBtn.classList.remove('disable')
-
-
 }
 
 function updatePlayerMoney() {
